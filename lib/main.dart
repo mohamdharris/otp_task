@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:otp_final/otp_phone_screen.dart';
+import 'package:otp_final/ui/home_screen.dart';
 
 import 'google_auth.dart';
 
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const GoogleAuthSignin(),
+      home: const HomeScreen(),
       // PhoneNumberScreen(),
     );
   }

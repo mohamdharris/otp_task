@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:otp_final/ui/home_screen.dart';
 
 class PhoneNumberScreen extends StatefulWidget {
   const PhoneNumberScreen({Key? key}) : super(key: key);
@@ -65,7 +66,12 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
         phoneNumber: phoneController.text,
         verificationCompleted: (PhoneAuthCredential credential) async {
           await auth.signInWithCredential(credential).then((value) {
-            print("You loggedIn Successfully");
+            // Navigator.pushNamedAndRemoveUntil(context, newRouteName, (route) => false)
+            //   Navigator.push(
+            //     context,
+            //     MaterialPageRoute(builder: (context) => const HomeScreen()),
+            //   );
+            // print("You loggedIn Successfully");
           });
         },
         verificationFailed: (FirebaseAuthException exception) {
@@ -83,6 +89,10 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
     PhoneAuthCredential credential = PhoneAuthProvider.credential(
         verificationId: verficationIDReceived, smsCode: otpCodeController.text);
     await auth.signInWithCredential(credential).then((value) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const HomeScreen()),
+      );
       print("You are LoggedIn Successfully");
     }
         // =>    NewScreen()
